@@ -60,7 +60,7 @@ flush privileges;
 ## Auteurs
 Listez le(s) auteur(s) du projet ici !
 * **Orion Beauny** _alias_ [@OrionBS](https://github.com/OrionBS)
-* Tous les [contributeurs](https://github.com/OrionBS/Projet9_AbernathyClinic/contributors)
+* Tous les [contributeurs](https://github.com/OrionBS/Projet9_AbernathyClinic_Patient/contributors)
 
 ## License
 
