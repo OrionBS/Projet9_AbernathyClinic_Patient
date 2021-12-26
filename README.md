@@ -1,8 +1,16 @@
-# Projet n°9 : Abernathy Clinic
+# Projet n°9 : Abernathy Clinic - Patient
 
-Sprint n° 1 : 
+Sprint n° 1 : Visualistation, création et mise à jour des patients sur l'application.
 
-#### Lien Github : https://github.com/OrionBS/Projet7_Poseidon-Inc
+Architecture Micro Service Back-End - Spring Boot / Gradle
+
+#### Lien Docker : https://hub.docker.com/r/orionbs/mediscreen_patient
+
+#### Lien Github : https://github.com/OrionBS/Projet9_AbernathyClinic_Patient
+
+#### Lien Github Note History : https://github.com/OrionBS/Projet9_AbernathyClinic_NoteHistory
+#### Lien Github Diabete Risk : https://github.com/OrionBS/Projet9_AbernathyClinic_DiabeteRisk
+#### Lien Github Front-End : https://github.com/OrionBS/Projet9_AbernathyClinic_Front
 
 ## Pour commencer
 
@@ -17,8 +25,8 @@ Sprint n° 1 :
 
 ```
 cd /"dossier de téléchargement"/
-git clone https://github.com/OrionBS/Projet9_AbernathyClinic
-cd /Projet9_AbernathyClinic
+git clone https://github.com/OrionBS/Projet9_AbernathyClinic_Patient
+cd /Projet9_AbernathyClinic_Patient
 ```
 
 ### Installation
@@ -39,15 +47,6 @@ grant all privileges on mediscreen.* to 'userData'@'localhost';
 flush privileges;
 ```
 
-## Démarrage
-
-API :
-
-```
-mvn build
-java -jar PoseidonAPI.jar
-```
-
 ## Fabriqué avec
 
 * [IntelliJ Community](https://www.jetbrains.com/idea/download/#section=windows) - Environnement de développement
@@ -66,5 +65,3 @@ Listez le(s) auteur(s) du projet ici !
 ## License
 
 Ce projet est conçu pour répondre en tant que travail d'étudiant lors d'une soutenance.
-
-
