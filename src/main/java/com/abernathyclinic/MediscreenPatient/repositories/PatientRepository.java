@@ -4,10 +4,8 @@ import com.abernathyclinic.MediscreenPatient.models.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
-
 @Repository
-public interface PatientRepository extends JpaRepository<Patient, UUID> {
+public interface PatientRepository extends JpaRepository<Patient, Integer> {
 
     /**
      * find on the mongoDB a patient in terms of firstName and lastName;
@@ -25,4 +23,5 @@ public interface PatientRepository extends JpaRepository<Patient, UUID> {
      * @param lastName  of the patient.
      */
     void deletePatientByFirstNameAndLastName(String firstName, String lastName);
+
 }

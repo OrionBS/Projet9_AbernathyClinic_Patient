@@ -16,7 +16,13 @@ public interface PatientService {
      * reading a patient on the repository.
      * @return the read patient.
      */
-    public Patient readingPatient(String firstName, String lastName);
+    public Patient readingPatientByFirstNameAndLastName(String firstName, String lastName);
+
+    /**
+     * reading a patient on the repository.
+     * @return the read patient.
+     */
+    public Patient readingPatientById(Integer patientId);
 
     /**
      * updating a patient on the repository.

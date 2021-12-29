@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(path = "/patient")
 public class PatientController {
 
@@ -18,7 +19,6 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping
     public ResponseEntity<Object> creatingPatient(@RequestBody Patient patient) {
         Patient patientAnswer = patientService.creatingPatient(patient);
@@ -31,19 +31,28 @@ public class PatientController {
 
     }
 
-    @CrossOrigin(origins = "*")
-    @GetMapping
-    public ResponseEntity<Object> readingPatient(@RequestParam String firstName, @RequestParam String lastName) {
-        Patient patientAnswer = patientService.readingPatient(firstName, lastName);
+    @GetMapping(path = "/name")
+    public ResponseEntity<Object> readingPatientByFirstNameAndLastName(@RequestParam String firstName, @RequestParam String lastName) {
+        Patient patientAnswer = patientService.readingPatientByFirstNameAndLastName(firstName, lastName);
 
         if (patientAnswer == null) {
-            return new ResponseEntity<>("Erreur, patient inexistant ou paramètres incorrects.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Erreur, patient inexistant ou paramètres incorrects.", HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(patientAnswer, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
+    @GetMapping(path = "/id")
+    public ResponseEntity<Object> readingPatientById(@RequestParam Integer patientId) {
+        Patient patientAnswer = patientService.readingPatientById(patientId);
+
+        if (patientAnswer == null) {
+            return new ResponseEntity<>("Erreur, patient inexistant ou paramètres incorrects.", HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(patientAnswer, HttpStatus.OK);
+    }
+
     @PutMapping
     public ResponseEntity<Object> updatingPatient(@RequestBody Patient patient) {
         Patient patientAnswer = patientService.updatingPatient(patient);
@@ -55,37 +64,34 @@ public class PatientController {
         return new ResponseEntity<>(patientAnswer, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @DeleteMapping
     public ResponseEntity<String> deletingPatient(String firstName, String lastName) {
         boolean patientAnswer = patientService.deletingPatient(firstName,lastName);
 
         if (!patientAnswer) {
-            return new ResponseEntity<>("Erreur, patient inexistant ou paramètres incorrectes.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Erreur, patient inexistant ou paramètres incorrectes.", HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>("Patient correctement effacé.",HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path = "/debugAll")
     public ResponseEntity<Object> readingAllPatient() {
         List<Patient> patientListAnswer = patientService.readingAllPatient();
 
         if (patientListAnswer.isEmpty()) {
-            return new ResponseEntity<>("Erreur, aucuns patients enregistrés.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Erreur, aucuns patients enregistrés.", HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(patientListAnswer,HttpStatus.FOUND);
     }
 
-    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/debugAll")
     public ResponseEntity<String> deletingAllPatient() {
         boolean patientAnswer = patientService.deletingAllPatient();
 
         if (!patientAnswer) {
-            return new ResponseEntity<>("Erreur, aucuns patients à effacer.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Erreur, aucuns patients à effacer.", HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>("Tous les patients ont été éffacés.",HttpStatus.OK);

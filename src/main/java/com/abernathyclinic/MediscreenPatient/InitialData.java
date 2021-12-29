@@ -26,7 +26,7 @@ public class InitialData {
         Patient patient4 = new Patient("Orion", "Beauny", LocalDate.of(2000, 2, 3), "M", "Somewhere", "Some number");
         List<Patient> patients = Arrays.asList(patient1, patient2, patient3, patient4);
         for (Patient patient : patients) {
-            if (patientService.readingPatient(patient.getFirstName(), patient.getLastName()) == null) {
+            if (patientService.readingPatientByFirstNameAndLastName(patient.getFirstName(), patient.getLastName()) == null) {
                 patientService.creatingPatient(patient);
             }
         }

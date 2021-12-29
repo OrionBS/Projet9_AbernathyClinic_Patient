@@ -30,7 +30,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient readingPatient(String firstName, String lastName) {
+    public Patient readingPatientByFirstNameAndLastName(String firstName, String lastName) {
 
         if (firstName == null || lastName == null) {
             return null;
@@ -39,6 +39,22 @@ public class PatientServiceImpl implements PatientService {
         if (patientAnswer == null) {
             return null;
         }
+        return patientAnswer;
+    }
+
+    @Override
+    public Patient readingPatientById(Integer patientId) {
+
+        if (patientId == null) {
+            return null;
+        }
+
+        Patient patientAnswer = patientRepository.findById(patientId).get();
+
+        if (patientAnswer == null) {
+            return null;
+        }
+
         return patientAnswer;
     }
 
@@ -71,18 +87,23 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public List<Patient> readingAllPatient() {
 
-        if (patientRepository.findAll().isEmpty()) {
+        List<Patient> patients = patientRepository.findAll();
+
+        if (patients.isEmpty()) {
             return null;
         }
-        return patientRepository.findAll();
+        return patients;
     }
 
     @Override
     public boolean deletingAllPatient() {
 
-        if (patientRepository.findAll().isEmpty()) {
+        List<Patient> patients = patientRepository.findAll();
+
+        if (patients.isEmpty()) {
             return false;
         }
+
         patientRepository.deleteAll();
         return true;
     }
