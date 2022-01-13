@@ -33,6 +33,14 @@ cd /Projet9_AbernathyClinic_Patient
 
 Pensez à intaller les dernières versions de Java, MySQL, Gradle
 
+### Test
+
+![img.png](img.png)
+
+![img_1.png](img_1.png)
+
+Pensez à intaller les dernières versions de Java, MySQL, Gradle
+
 ### Paramétrage MySQL
 
 Dans la console, démarrez MySQL
