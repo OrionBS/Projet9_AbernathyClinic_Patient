@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -77,13 +78,15 @@ public class PatientController {
 
     @GetMapping(path = "/debugAll")
     public ResponseEntity<Object> readingAllPatient() {
-        List<Patient> patientListAnswer = patientService.readingAllPatient();
+        List<Patient> patientListAnswer = new ArrayList<>();
+
+        patientListAnswer = patientService.readingAllPatient();
 
         if (patientListAnswer.isEmpty()) {
             return new ResponseEntity<>("Erreur, aucuns patients enregistrés.", HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(patientListAnswer,HttpStatus.FOUND);
+        return new ResponseEntity<>(patientListAnswer,HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/debugAll")

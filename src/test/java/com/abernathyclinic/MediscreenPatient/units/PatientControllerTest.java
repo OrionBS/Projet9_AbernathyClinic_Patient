@@ -199,7 +199,7 @@ public class PatientControllerTest {
         //THEN
         Mockito.verify(patientService,Mockito.times(1)).readingAllPatient();
         Assertions.assertEquals(patients,patientsRead.getBody());
-        Assertions.assertEquals(HttpStatus.FOUND, patientsRead.getStatusCode());
+        Assertions.assertEquals(HttpStatus.OK, patientsRead.getStatusCode());
 
     }
 
