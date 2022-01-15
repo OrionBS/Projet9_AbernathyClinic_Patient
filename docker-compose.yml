@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+  patientMicroService:
+    image: orionbs/mediscreen_patient
+    hostname: patientInfosMSA
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysqlDB
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqlDB:3306/mediscreenData
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  mysqlDB:
+    image: mysql:latest
+    hostname: mysqlDB
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: mediscreenData
+      MYSQL_ROOT_PASSWORD: root
+
+  noteHistoryMicroService:
+    image: orionbs/mediscreen_notehistory
+    hostname: notesHistoryMSA
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongoDB
+    environment:
+      SPRING_DATA_MONGODB_HOST: mongoDB
+      SPRING_DATA_MONGODB_DATABASE: mediscreenData
+
+  mongoDB:
+    image: mongo:latest
+    hostname: mongoDB
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
+
+  diabeteRiskMicroService:
+    image: orionbs/mediscreen_diabeterisk
+    hostname: diabeteRiskMSA
+    ports:
+      - "8080:8080"
